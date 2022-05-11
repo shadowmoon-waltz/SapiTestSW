@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="50px"
+    android:orientation="vertical">
+  <Spinner
+      android:id="@+id/spinner"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+  <EditText
+      android:id="@+id/et_message"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:layout_width="match_parent"
+      android:layout_marginTop="50px"
+      android:hint="Type a message here" />
+  <Button
+      android:id="@+id/btn_make_recv"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="50px"
+      android:text="Send RECV Message" />
+</LinearLayout>

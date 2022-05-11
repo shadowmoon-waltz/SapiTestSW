@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sw.sapitest.srv"
+    android:resizeableActivity="true">
+
+    <queries>
+      <!-- client broadcast receiver for inbound message -->
+      <intent>
+        <action android:name="com.sw.sapi.RECV" />
+      </intent>
+      <!-- client activity for confirming api setup -->
+      <intent>
+        <action android:name="com.sw.sapi.INIT" />
+        <data android:mimeType="text/plain" />
+      </intent>
+      <!-- client broadcast receiver for user requested api conversation disconnect -->
+      <intent>
+        <action android:name="com.sw.sapi.UNINIT" />
+      </intent>
+    </queries>
+
+  <application
+      android:label="SapiTestSrv"
+      android:theme="@style/Style">
+    <activity
+        android:name=".MainActivity"
+        android:label="SapiTestSrv"
+        android:launchMode="singleTop"
+        android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <receiver android:name=".Receiver"
+        android:exported="true">
+      <intent-filter>
+        <!-- server broadcast receiver for outbound message -->
+        <action android:name="com.sw.sapi.SEND" />
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>

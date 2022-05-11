@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sw.sapitest.cli"
+    android:resizeableActivity="true">
+
+    <queries>
+      <!-- server broadcast receiver for outbound message -->
+      <intent>
+        <action android:name="com.sw.sapi.RECV" />
+      </intent>
+    </queries>
+
+  <application
+      android:label="SapiTestCli"
+      android:theme="@style/Style">
+    <activity
+        android:name=".MainActivity"
+        android:label="SapiTestCli"
+        android:launchMode="singleTop"
+        android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity
+        android:name=".InitActivity"
+        android:launchMode="standard"
+        android:exported="true"
+        android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+        android:excludeFromRecents="true">
+      <!-- client activity for confirming api setup -->
+      <intent-filter>
+        <action android:name="com.sw.sapi.INIT" />
+        <data android:mimeType="text/plain" />
+      </intent-filter>
+    </activity>
+    <receiver android:name=".Receiver"
+        android:exported="true">
+      <!-- client broadcast receiver for inbound message -->
+      <intent-filter>
+        <action android:name="com.sw.sapi.RECV" />
+      </intent-filter>
+      <!-- client broadcast receiver for user requested api conversation disconnect -->
+      <intent-filter>
+        <action android:name="com.sw.sapi.UNINIT" />
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>

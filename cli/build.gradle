@@ -1,0 +1,65 @@
+plugins {
+  id "com.android.application"
+  id "kotlin-android"
+}
+
+boolean signConfigExists = project.hasProperty("keystoreFile") &&
+                           project.hasProperty("keystorePassword") &&
+                           project.hasProperty("keystoreAlias") &&
+                           project.hasProperty("keystoreAliasPassword")
+
+android {
+  signingConfigs {
+    if (signConfigExists) {
+      release {
+        storeFile file(project.property("keystoreFile"))
+        storePassword project.property("keystorePassword")
+        keyAlias project.property("keystoreAlias")
+        keyPassword project.property("keystoreAliasPassword")
+      }
+    }
+  }
+
+  compileSdkVersion 31
+
+  defaultConfig {
+    applicationId "com.sw.sapitest.cli"
+    minSdkVersion 14
+    targetSdkVersion 31
+    versionCode 1
+    versionName "0.1"
+  }
+  
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+  
+  buildTypes {
+    release {
+      applicationVariants.all { variant ->
+        variant.outputs.all {
+          outputFileName = "SapiTestCliSW.apk"
+        }
+      }
+      postprocessing {
+        removeUnusedCode true
+        removeUnusedResources true
+        obfuscate false
+        optimizeCode true
+      }
+      if (signConfigExists) {
+        signingConfig signingConfigs.release
+      }
+    }
+  }
+
+  buildFeatures {
+    viewBinding true
+  }
+}
+
+dependencies {
+  //implementation "androidx.core:core-ktx:1.7.0"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}

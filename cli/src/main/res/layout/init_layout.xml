@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="50px"
+    android:orientation="vertical">
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="SapiTestCli received an api communication init request. Please select whether to accept this request." />
+  <Button
+      android:id="@+id/btn_deny"
+      android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:layout_marginTop="100px"
+      android:text="Deny" />
+  <Button
+      android:id="@+id/btn_confirm"
+      android:layout_height="wrap_content"
+      android:layout_width="match_parent"
+      android:layout_marginTop="100px"
+      android:text="Confirm" />
+</LinearLayout>
