@@ -12,3 +12,13 @@ No permissions are required (although there are queries element in the manifest 
 License is GPLv3.
 
 Build command is: gradle assembleRelease (requires Gradle and Android SDK installation).
+
+If you don't have a signing key, follow the [command line signing instructions] (https://developer.android.com/studio/build/building-cmdline#sign_cmdline).
+
+Uses a signing method where you add to (or create) the following lines in gradle.properties in the gradle user home directory (in .gradle in your home directory by default) (replace all `...` with the correct values)
+```
+keystoreFile=...
+keystorePassword=...
+keystoreAlias=...
+keystoreAliasPassword=...
+```
