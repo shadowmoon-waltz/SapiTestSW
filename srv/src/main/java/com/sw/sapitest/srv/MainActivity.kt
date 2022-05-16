@@ -135,11 +135,11 @@ class MainActivity: Activity() {
             component = ComponentName(item.app, item.cls)
             setPackage(item.app)
           }
-          Toast.makeText(this@MainActivity, "Providing token to app", Toast.LENGTH_LONG).show()
+          Toast.makeText(this, "Providing token to app", Toast.LENGTH_LONG).show()
           try {
             startActivityForResult(intent, INIT_FINISHED)
           } catch (_: Exception) {
-            Toast.makeText(this@MainActivity, "Failed to start app", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Failed to start app", Toast.LENGTH_LONG).show()
           }
         } else {
           prefs.edit().remove("p ${item.app}").remove("t ${item.token}").commit()
@@ -150,12 +150,13 @@ class MainActivity: Activity() {
             setPackage(item.app)
           }
           sendBroadcast(intent)
-          Toast.makeText(this@MainActivity, "Revoked token for app ${item.app}", Toast.LENGTH_LONG).show()
+          Toast.makeText(this, "Revoked token for app ${item.app}", Toast.LENGTH_LONG).show()
           refresh()
         }
       }
     }
   }
+
   override protected fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
@@ -221,7 +222,7 @@ class MainActivity: Activity() {
     val (token, app) = s.split('/', limit=2)
     if (resultCode > 0) {
       Toast.makeText(this, "App indicated it accepted the token", Toast.LENGTH_LONG).show()
-      prefs.edit().putString("p $app", token).putString("t $token", app).commit()
+      prefs.edit().remove("i ${resultCode2}").putString("p $app", token).putString("t $token", app).commit()
       refresh()
     } else {
       Toast.makeText(this, "App indicated it DID NOT accept the token", Toast.LENGTH_LONG).show()
